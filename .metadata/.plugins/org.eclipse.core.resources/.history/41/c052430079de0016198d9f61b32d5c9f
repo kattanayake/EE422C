@@ -1,0 +1,23 @@
+package HelloWorldTest;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class basic_test_case {
+
+	@Test
+	public void test() {
+		throw new RuntimeException("my own error");
+	}
+	
+	@Test
+	public void testAdd() {
+		int a = 5, b = 17;
+		int correct = a + b;
+		int actual;
+		actual = HelloWorldTest.add(a,b);
+		assertEquals(correct, actual);
+	}
+
+}
