@@ -1,0 +1,67 @@
+package assignment2;
+
+import java.util.*;
+import java.io.*;
+
+public class Game {
+	boolean isTesting;
+	
+	public Game(boolean isTesting) {
+		this.isTesting = isTesting;
+	}
+	
+	public void runGame() {
+		System.out.println("Do you want to play a new game? (Y/N) :");
+		Scanner scan = new Scanner(System.in);
+		String start = scan.next();
+		System.out.println(start);
+		if(start.equals("Y")) {
+			startGame(scan);
+		}		
+	}
+	
+	public void startGame(Scanner scan) {
+		
+		boolean win = false;
+		boolean keepPlaying = true;
+		
+		while(keepPlaying) {
+			int numTurns = GameConfiguration.guessNumber;
+			String secret_code = makeSecretCode();
+			String guess = "";
+			Decoder decode = new Decoder(secret_code, guess);
+			while(!win && numTurns > 0) {
+				System.out.println("You have " + numTurns + " guess(es) left.");
+				askForGuess(decode, scan, secret_code);
+				numTurns--;
+			}			
+			keepPlaying = toContinue(scan);			
+		}
+	}
+	
+	public String makeSecretCode() {
+		SecretCodeGenerator code = SecretCodeGenerator.getInstance();
+		String secret_code = code.getNewSecretCode();
+		System.out.println("Secret code: "+ secret_code);
+		System.out.println();
+		return secret_code;
+	}
+	
+	public boolean toContinue(Scanner scan) {
+		System.out.println();
+		System.out.println("Do you want to play a new game? (Y/N) :");
+		String answer = scan.next();
+		if(answer.equals("N")) {
+			return false;
+		}
+		return true;
+	}
+	
+	public void askForGuess(Decoder decode, Scanner scan, String secret_code) {
+		System.out.println("Enter our guess: ");
+		String guess = scan.next();
+		System.out.println(guess);
+	}
+	
+
+}
