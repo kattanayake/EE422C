@@ -42,7 +42,7 @@ public class Game {
 				}
 				win = askForClue(decode, guess, historyBoard);
 				numTurns--;
-				if(numTurns == 0 || win) terminationMessage(win, secret_code);
+				if(numTurns == 0 || win) terminationMessage(win);
 				notValid = true;
 			}			
 				keepPlaying = toContinue(scan);			
@@ -99,12 +99,12 @@ public class Game {
 		return false;
 	}
 	
-	private void terminationMessage(boolean win, String secret) {
+	private void terminationMessage(boolean win) {
 		if(win) {
 			System.out.println("You win!");
 		}
 		else {
-			System.out.println("You lose! The patter was " + secret);
+			System.out.println("You lose!");
 		}		
 	}
 }

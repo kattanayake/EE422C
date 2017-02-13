@@ -3,11 +3,7 @@ package assignment2;
 import java.util.*;
 
 public class Board {
-	ArrayList<String> list;
-	
-	public Board() {
-		list = new ArrayList<String>();
-	}
+	ArrayList list;
 	
 	public void addToHistory(String add) {
 		list.add(add);

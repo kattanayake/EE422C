@@ -23,36 +23,30 @@ public class Game {
 		
 		boolean win = false;
 		boolean keepPlaying = true;
-		boolean notValid = true;
+		boolean valid = false;
 		
 		while(keepPlaying) {
 			int numTurns = GameConfiguration.guessNumber;
 			String secret_code = makeSecretCode();
 			String guess = "";
 			Decoder decode = new Decoder(secret_code, guess);
-			Board historyBoard = new Board();
-			
 			while(!win && numTurns > 0) {
-				while(notValid) {
-					guess = askForGuess(decode, scan, numTurns);
-					if(guess.equals("HISTORY")) {
-						historyBoard.printHistory();
-					}
-					notValid = checkInputs(guess);				
+				System.out.println("You have " + numTurns + " guess(es) left.");
+				while(!valid) {
+					guess = askForGuess(decode, scan);
+					System.out.println(guess);
 				}
-				win = askForClue(decode, guess, historyBoard);
 				numTurns--;
-				if(numTurns == 0 || win) terminationMessage(win, secret_code);
-				notValid = true;
+				if(numTurns == 0 || win) terminationMessage(win);
 			}			
-				keepPlaying = toContinue(scan);			
+			keepPlaying = toContinue(scan);			
 			}
 		}
 	
 	private String makeSecretCode() {
 		SecretCodeGenerator code = SecretCodeGenerator.getInstance();
 		String secret_code = code.getNewSecretCode();
-		if(isTesting) System.out.println("Secret code: "+ secret_code);
+		System.out.println("Secret code: "+ secret_code);
 		System.out.println();
 		return secret_code;
 	}
@@ -67,8 +61,7 @@ public class Game {
 		return true;
 	}
 	
-	private String askForGuess(Decoder decode, Scanner scan, int numTurns) {
-		System.out.println("You have " + numTurns + " guess(es) left.");
+	private String askForGuess(Decoder decode, Scanner scan) {
 		System.out.println("Enter your guess: ");
 		String guess = scan.next();
 		decode.setNewGuess(guess);
@@ -76,35 +69,21 @@ public class Game {
 		
 	}
 	
-	private boolean askForClue(Decoder decode, String guess, Board historyBoard) {
-		boolean win;
-		win = decode.makeClue();
-		if(win) return true;
-		String summary = guess + " -> " + decode.getBlack() + "b_" + decode.getWhite() + "w";
-		historyBoard.addToHistory(summary);
-		System.out.println(summary);
-		System.out.println();
-		return win;
-
-	}
-	
 	public boolean checkInputs(String guess) {
-		if((guess.length() != GameConfiguration.pegNumber || !guess.equals(guess.toUpperCase()))) {
-			if(!guess.equals("HISTORY")) {
-				System.out.println("INVALID_GUESS");
-				System.out.println();	
-			}
-			return true;
+		if(guess.length() > GameConfiguration.pegNumber || !guess.equals(guess.toUpperCase())) {
+			System.out.println("INVALID_GUESS");
+			System.out.println();	
+			return false;
 		}
-		return false;
+		return true;
 	}
 	
-	private void terminationMessage(boolean win, String secret) {
+	private void terminationMessage(boolean win) {
 		if(win) {
 			System.out.println("You win!");
 		}
 		else {
-			System.out.println("You lose! The patter was " + secret);
+			System.out.println("You lose!");
 		}		
 	}
 }

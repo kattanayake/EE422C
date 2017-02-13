@@ -30,20 +30,14 @@ public class Game {
 			String secret_code = makeSecretCode();
 			String guess = "";
 			Decoder decode = new Decoder(secret_code, guess);
-			Board historyBoard = new Board();
-			
 			while(!win && numTurns > 0) {
 				while(notValid) {
 					guess = askForGuess(decode, scan, numTurns);
-					if(guess.equals("HISTORY")) {
-						historyBoard.printHistory();
-					}
 					notValid = checkInputs(guess);				
 				}
-				win = askForClue(decode, guess, historyBoard);
+				win = askForClue(decode, guess);
 				numTurns--;
-				if(numTurns == 0 || win) terminationMessage(win, secret_code);
-				notValid = true;
+				if(numTurns == 0 || win) terminationMessage(win);
 			}			
 				keepPlaying = toContinue(scan);			
 			}
@@ -52,7 +46,7 @@ public class Game {
 	private String makeSecretCode() {
 		SecretCodeGenerator code = SecretCodeGenerator.getInstance();
 		String secret_code = code.getNewSecretCode();
-		if(isTesting) System.out.println("Secret code: "+ secret_code);
+		System.out.println("Secret code: "+ secret_code);
 		System.out.println();
 		return secret_code;
 	}
@@ -76,35 +70,31 @@ public class Game {
 		
 	}
 	
-	private boolean askForClue(Decoder decode, String guess, Board historyBoard) {
+	private boolean askForClue(Decoder decode, String guess) {
 		boolean win;
 		win = decode.makeClue();
 		if(win) return true;
-		String summary = guess + " -> " + decode.getBlack() + "b_" + decode.getWhite() + "w";
-		historyBoard.addToHistory(summary);
-		System.out.println(summary);
+		System.out.println(guess + " -> " + decode.getBlack() + "b_" + decode.getWhite() + "w");
 		System.out.println();
 		return win;
 
 	}
 	
 	public boolean checkInputs(String guess) {
-		if((guess.length() != GameConfiguration.pegNumber || !guess.equals(guess.toUpperCase()))) {
-			if(!guess.equals("HISTORY")) {
-				System.out.println("INVALID_GUESS");
-				System.out.println();	
-			}
+		if(guess.length() > GameConfiguration.pegNumber || !guess.equals(guess.toUpperCase())) {
+			System.out.println("INVALID_GUESS");
+			System.out.println();	
 			return true;
 		}
 		return false;
 	}
 	
-	private void terminationMessage(boolean win, String secret) {
+	private void terminationMessage(boolean win) {
 		if(win) {
 			System.out.println("You win!");
 		}
 		else {
-			System.out.println("You lose! The patter was " + secret);
+			System.out.println("You lose!");
 		}		
 	}
 }

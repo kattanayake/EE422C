@@ -42,7 +42,7 @@ public class Game {
 				}
 				win = askForClue(decode, guess, historyBoard);
 				numTurns--;
-				if(numTurns == 0 || win) terminationMessage(win, secret_code);
+				if(numTurns == 0 || win) terminationMessage(win, secret);
 				notValid = true;
 			}			
 				keepPlaying = toContinue(scan);			
