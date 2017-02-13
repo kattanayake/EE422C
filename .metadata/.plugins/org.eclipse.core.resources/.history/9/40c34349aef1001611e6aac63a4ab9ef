@@ -45,8 +45,7 @@ public class Game {
 				if(numTurns == 0 || win) terminationMessage(win, secret_code);
 				notValid = true;
 			}			
-				keepPlaying = toContinue(scan);
-				win = false;
+				keepPlaying = toContinue(scan);			
 			}
 		}
 	
@@ -80,10 +79,11 @@ public class Game {
 	private boolean askForClue(Decoder decode, String guess, Board historyBoard) {
 		boolean win;
 		win = decode.makeClue();
+		if(win) return true;
 		String summary = guess + " -> " + decode.getBlack() + "b_" + decode.getWhite() + "w";
 		historyBoard.addToHistory(summary);
 		System.out.println(summary);
-		if(!win) System.out.println();
+		System.out.println();
 		return win;
 
 	}

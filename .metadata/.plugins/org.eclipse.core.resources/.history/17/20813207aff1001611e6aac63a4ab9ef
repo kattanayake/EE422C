@@ -45,8 +45,7 @@ public class Game {
 				if(numTurns == 0 || win) terminationMessage(win, secret_code);
 				notValid = true;
 			}			
-				keepPlaying = toContinue(scan);
-				win = false;
+				keepPlaying = toContinue(scan);			
 			}
 		}
 	
@@ -83,7 +82,7 @@ public class Game {
 		String summary = guess + " -> " + decode.getBlack() + "b_" + decode.getWhite() + "w";
 		historyBoard.addToHistory(summary);
 		System.out.println(summary);
-		if(!win) System.out.println();
+		System.out.println();
 		return win;
 
 	}

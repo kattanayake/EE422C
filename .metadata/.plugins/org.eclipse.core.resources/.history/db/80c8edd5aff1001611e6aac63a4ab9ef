@@ -10,7 +10,7 @@ public class Driver {
 			testing = true;
 		}
 		
-		Game g = new Game(true);
+		Game g = new Game(testing);
 		System.out.println("Welcome to Mastermind.");
 		g.runGame();
 	}
