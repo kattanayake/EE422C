@@ -5,7 +5,8 @@ import java.util.Random;
 public class SecretCodeGenerator {
 	private static SecretCodeGenerator instance = new SecretCodeGenerator();
 	public static SecretCodeGenerator getInstance() { return instance; }
-		
+	
+	
 	private Random randomGenerator;
 	
 	//Do not create your own SecretCodeGenerator Objects
