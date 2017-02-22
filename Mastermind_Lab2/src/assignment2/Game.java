@@ -21,7 +21,7 @@ public class Game {
 	 * input will terminate the program. 
 	 */
 	public void runGame() {
-		System.out.println("Do you want to play a new game? (Y/N) :");
+		System.out.println("Do you want to play a new game? (Y/N):");
 		Scanner scan = new Scanner(System.in);
 		String start = scan.next();
 		if(start.equals("Y")) {
@@ -117,7 +117,7 @@ public class Game {
 	 */
 	private boolean toContinue(Scanner scan) {
 		System.out.println();
-		System.out.println("Do you want to play a new game? (Y/N) :");
+		System.out.println("Do you want to play a new game? (Y/N):");
 		
 		String answer = scan.next();
 		if(answer.equals("N")) {
@@ -135,7 +135,7 @@ public class Game {
 	 */
 	private String askForGuess(Decoder decode, Scanner scan, int numTurns) {
 		System.out.println("You have " + numTurns + " guess(es) left.");
-		System.out.println("Enter your guess: ");
+		System.out.println("Enter guess:");
 		
 		String guess = scan.next();
 		decode.setNewGuess(guess);
@@ -196,7 +196,7 @@ public class Game {
 			System.out.println("You win!");
 		}
 		else {
-			System.out.println("You lose! The patter was " + secret);
+			System.out.println("You lose! The pattern was " + secret);
 		}		
 	}
 }
