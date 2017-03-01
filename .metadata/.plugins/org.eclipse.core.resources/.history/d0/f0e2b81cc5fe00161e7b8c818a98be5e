@@ -301,7 +301,8 @@ public class Main {
     
     public static void reset() {
     	DFSvisited.clear();
-    	DFSstore.clear(); 	
+    	DFSstore.clear();
+    	
     }
     
     

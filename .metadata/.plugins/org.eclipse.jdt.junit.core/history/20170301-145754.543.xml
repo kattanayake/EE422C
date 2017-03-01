@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="WordLadderTester" project="WordLadder" tests="5" started="5" failures="0" errors="0" ignored="0">
+  <testsuite name="assignment3.WordLadderTester" time="0.121">
+    <testcase name="testPrintLadder" classname="assignment3.WordLadderTester" time="0.011"/>
+    <testcase name="testBFS1" classname="assignment3.WordLadderTester" time="0.031"/>
+    <testcase name="testBFS2" classname="assignment3.WordLadderTester" time="0.027"/>
+    <testcase name="testDFS1" classname="assignment3.WordLadderTester" time="0.025"/>
+    <testcase name="testDFS2" classname="assignment3.WordLadderTester" time="0.027"/>
+  </testsuite>
+</testrun>

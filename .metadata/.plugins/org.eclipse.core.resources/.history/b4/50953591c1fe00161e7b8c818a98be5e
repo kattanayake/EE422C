@@ -62,7 +62,7 @@ public class Main {
 		
 		// TODO methods to read in words, output ladder
 		//getWordLadderBFS(start_global, end_global);
-		printLadder(getWordLadderDFS("happy","cells"));
+		printLadder(getWordLadderDFS("aldol", "drawl"));
 		
 
 	}
@@ -118,6 +118,7 @@ public class Main {
 	 * @return
 	 */
 	public static ArrayList<String> PrintDFS(String start_global, String end_global){
+				
 		String tempPrint = end_global;  
 		ArrayList<String> toPrint = new ArrayList<String>();
 		
@@ -143,7 +144,6 @@ public class Main {
 	 * 		   null if there is not a path between start and end 
 	 */
 	public static ArrayList<String> getWordLadderDFS(String start_param, String end_param) {
-		reset();
 		ArrayList<String> output = new ArrayList<String>();
 		String start = start_param.toUpperCase();
 		String end = end_param.toUpperCase();
@@ -223,7 +223,6 @@ public class Main {
 	 * @return
 	 */
     public static ArrayList<String> getWordLadderBFS(String start_param, String end_param) {
-    	reset();
     	String start = start_param.toUpperCase();
     	String end = end_param.toUpperCase();
 		Set<String> dict = makeDictionary();
@@ -299,10 +298,6 @@ public class Main {
 		return Dne; 
 	}
     
-    public static void reset() {
-    	DFSvisited.clear();
-    	DFSstore.clear(); 	
-    }
     
     
     /**
